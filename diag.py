@@ -1,9 +1,9 @@
 import falcon
 # import rpy2's package module
-import rpy2.robjects.packages as rpackages
-
-# import R's utility package
-utils = rpackages.importr('utils')
+# import rpy2.robjects.packages as rpackages
+#
+# # import R's utility package
+# utils = rpackages.importr('utils')
 
 
 # Falcon follows the REST architectural style, meaning (among
