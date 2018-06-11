@@ -12,7 +12,7 @@ class DiagResource(object):
     def on_get(self, req, resp):
         """Handles GET requests"""
         resp.status = falcon.HTTP_200  # This is the default status
-        resp.body = 'this is a test request'
+        resp.body = '1'
 
 
 # falcon.API instances are callable WSGI apps
