@@ -22,8 +22,8 @@ class DiagResource(object):
         
         # start doing stuff here
         try:
-            #out = bt.seqblock(query = FALSE, id_vars = "ID", id_vals = 002, exact_vars = "var1", exact_vals = "Dem", covar_vars = "var2", covar_vals = 25)
-            out = str(stats.rnorm(1))
+            out = bt.seqblock(query = FALSE, id_vars = "ID", id_vals = 002, exact_vars = "var1", exact_vals = "Dem", covar_vars = "var2", covar_vals = 25)
+            #out = str(stats.rnorm(1))
 
             resp.body = out
         # if it doesn't work, tell the user what's wrong
