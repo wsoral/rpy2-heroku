@@ -22,7 +22,7 @@ class DiagResource(object):
         
         # start doing stuff here
         try:
-            #out = bt.seqblock(query = FALSE, id_vars = "ID", id_vals = 002, exact_vars = "var1", exact_vals = "Dem", covar_vars = "var2", covar_vals = 25)
+            out = bt.seqblock(query = FALSE, id_vars = "ID", id_vals = 002, exact_vars = "var1", exact_vals = "Dem", covar_vars = "var2", covar_vals = 25)
             #out = str(stats.rnorm(1))
             test = 1/(1-1)
             resp.body = out
@@ -30,6 +30,8 @@ class DiagResource(object):
         except:
             #resp.body = str(sys.exc_info()[0])
             resp.body = 'this worked'
+        else:
+            resp.body = 'Please email Diag at diag@uchicago.edu; he apparently messed something up.'
             
 # falcon.API instances are callable WSGI apps
 app = falcon.API()
