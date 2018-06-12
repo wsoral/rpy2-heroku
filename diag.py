@@ -18,6 +18,9 @@ class DiagResource(object):
     def on_get(self, req, resp):
         """Handles GET requests"""
         resp.status = falcon.HTTP_200  # This is the default status
+        
+        out = bt.seqblock(query = FALSE, id.vars = "ID", id.vals = 002, exact.vars = "var1", exact.vals = "Dem", covar.vars = "var2", covar.vals = 25, file.name = "sdata.RData")
+        
         resp.body = '1'
 
 
