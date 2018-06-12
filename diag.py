@@ -27,8 +27,9 @@ class DiagResource(object):
 
             resp.body = out
         # if it doesn't work, tell the user what's wrong
-        except Exception as e:
-            resp.body = e
+        except:
+            #resp.body = str(sys.exc_info()[0])
+            resp.body = 'this worked'
             
 # falcon.API instances are callable WSGI apps
 app = falcon.API()
