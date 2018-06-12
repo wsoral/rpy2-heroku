@@ -2,6 +2,7 @@ import falcon
 import rpy2.robjects.packages as rpackages
 import rpy2.robjects as robj
 import pandas as pd
+import sys
 
 # import R's utility package
 utils = rpackages.importr('utils')
@@ -28,10 +29,11 @@ class DiagResource(object):
             resp.body = out
         # if it doesn't work, tell the user what's wrong
         except:
-            #resp.body = str(sys.exc_info()[0])
-            resp.body = 'this worked'
+            resp.body = str(sys.exc_info()[0])
+            #resp.body = 'this worked'
         else:
-            resp.body = 'Please email Diag at diag@uchicago.edu; he apparently messed something up.'
+            # I'll use this later
+            resp.body = 'Something went really wrong. Please email Diag at diag@uchicago.edu; he apparently messed something up.'
             
 # falcon.API instances are callable WSGI apps
 app = falcon.API()
