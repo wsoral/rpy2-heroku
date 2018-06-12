@@ -1,11 +1,15 @@
 import falcon
 import rpy2.robjects.packages as rpackages
 import rpy2.robjects as robj
+import pandas as pd
 
 # import R's utility package
 utils = rpackages.importr('utils')
 bt = rpackages.importr('blockTools')
 
+# dummy test data
+d = {'col1': [1, 2], 'col2': [3, 4]}
+df = pd.DataFrame(data=d)
 
 # Falcon follows the REST architectural style, meaning (among
 # other things) that you think in terms of resources and state
@@ -14,7 +18,7 @@ class DiagResource(object):
     def on_get(self, req, resp):
         """Handles GET requests"""
         resp.status = falcon.HTTP_200  # This is the default status
-        out = str(bt.x100)
+        out = df[1,1]
         resp.body = out
 
 
