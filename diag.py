@@ -5,6 +5,7 @@ import pandas as pd
 
 # import R's utility package
 utils = rpackages.importr('utils')
+stats = rpackages.importr('stats')
 bt = rpackages.importr('blockTools')
 
 # dummy test data
@@ -19,9 +20,10 @@ class DiagResource(object):
         """Handles GET requests"""
         resp.status = falcon.HTTP_200  # This is the default status
         
-        out = bt.seqblock(query = FALSE, id_vars = "ID", id_vals = 002, exact_vars = "var1", exact_vals = "Dem", covar_vars = "var2", covar_vals = 25)
+        #out = bt.seqblock(query = FALSE, id_vars = "ID", id_vals = 002, exact_vars = "var1", exact_vals = "Dem", covar_vars = "var2", covar_vals = 25)
+        out = str(stats.rnorm(1))
         
-        resp.body = '1'
+        resp.body = out
 
 
 # falcon.API instances are callable WSGI apps
