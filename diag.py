@@ -34,7 +34,7 @@ class DiagResource(object):
             resp.body = traceback.print_exc()
         else:
             # I'll use this later
-            resp.body = str('Something went really wrong. Please email Diag at diag@uchicago.edu; he apparently messed something up.')
+            resp.body = str('Something  went really wrong. Please email Diag at diag@uchicago.edu; he apparently messed something up.')
             
 # falcon.API instances are callable WSGI apps
 app = falcon.API()
