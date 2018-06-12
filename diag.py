@@ -29,7 +29,7 @@ class DiagResource(object):
             resp.body = out
         # if it doesn't work, tell the user what's wrong
         except:
-            resp.body = str(sys.exc_info()[0])
+            resp.body = str(sys.exc_info())
             #resp.body = 'this worked'
         else:
             # I'll use this later
