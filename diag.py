@@ -14,7 +14,7 @@ class DiagResource(object):
     def on_get(self, req, resp):
         """Handles GET requests"""
         resp.status = falcon.HTTP_200  # This is the default status
-        out = str(robj.r('1+2+ nchar("opp")'))
+        out = str(bt.x100)
         resp.body = out
 
 
