@@ -23,15 +23,17 @@ class DiagResource(object):
         
         # start doing stuff here
         try:
-            out = bt.seqblock(query = "FALSE", id_vars = "ID", id_vals = 2, exact_vars = "var1", exact_vals = "Dem", covar_vars = "var2", covar_vals = 25)
+            #out = bt.seqblock(query = "FALSE", id_vars = "ID", id_vals = 2, exact_vars = "var1", exact_vals = "Dem", covar_vars = "var2", covar_vals = 25)
             #out = str(stats.rnorm(1))
             #test = 1/(1-1)
+            
+            out = blahdeblah
             resp.body = out
         # if it doesn't work, tell the user what's wrong
         except:
-            #resp.body = str(sys.exc_info())
+            resp.body = str(sys.exc_info())
             #resp.body = 'this worked'
-            resp.body = traceback.print_exc()
+            #resp.body = traceback.print_exc()
         else:
             # I'll use this later
             resp.body = str('Something  went really wrong. Please email Diag at diag@uchicago.edu; he apparently messed something up.')
