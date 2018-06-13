@@ -40,7 +40,7 @@ class DiagResource(object):
             #out = bt.seqblock(query = "FALSE", id_vars = "ID", id_vals = 2, exact_vars = "var1", exact_vals = "Dem", covar_vars = "var2", covar_vals = 25)
             #out = str(stats.rnorm(1))
             #test = 1/(1-1)
-            out = str(5) ## str(robjects.r('pi')[0])
+            out = 't' ## str(robjects.r('pi')[0])
             
             resp.body = out
             
