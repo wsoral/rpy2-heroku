@@ -31,9 +31,7 @@ class DiagResource(object):
         """Handles GET requests"""
         resp.status = falcon.HTTP_200  # This is the default status
 
-        out = robjects.r('''
-               pi
-            ''')
+        out = robjects.r('pi')
             
         resp.body = str(out)
 
