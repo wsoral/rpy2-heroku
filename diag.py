@@ -16,15 +16,9 @@ class DiagResource(object):
         resp.status = falcon.HTTP_200  # This is the default status
 
         out = robjects.r('''
-            # create a function `f`
-            f <- function(r, verbose=FALSE) {
-                if (verbose) {
-                    cat("I am calling f().\n")
-                }
-                2 * pi * r
-            }
-            # call the function `f` with argument value 3
-            f(3)
+            install.packages("blockTools")
+            library(blockTools)
+            seqblock
             ''')
             
         resp.body = str(out)
