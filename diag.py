@@ -32,10 +32,11 @@ class DiagResource(object):
     def on_get(self, req, resp):
         """Handles GET requests"""
         resp.status = falcon.HTTP_200  # This is the default status
-
-        out = robjects.r('pi')
+        
+        out = utils.help("seqblock")
+        #out = robjects.r('pi')
             
-        resp.body = str(out)
+        resp.body = str(out[0])
 
 # falcon.API instances are callable WSGI apps
 app = falcon.API()
