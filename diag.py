@@ -1,6 +1,6 @@
 import falcon
 import rpy2.robjects.packages as rpackages
-import rpy2.robjects as robjects
+#import rpy2.robjects as robjects
 import sys
 
 # import R's utility package
@@ -22,7 +22,7 @@ class DiagResource(object):
             
         # if it doesn't work, tell the user what's wrong
         except:
-            resp.body = str(sys.exc_info())
+            resp.body = 'e' # str(sys.exc_info())
 
         else:
             # I'll use this later
