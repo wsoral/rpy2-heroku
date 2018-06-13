@@ -14,20 +14,10 @@ class DiagResource(object):
     def on_get(self, req, resp):
         """Handles GET requests"""
         resp.status = falcon.HTTP_200  # This is the default status
-        
-        # start doing stuff here
-        try:
-            out = 't'
-            resp.body = out
-            
-        # if it doesn't work, tell the user what's wrong
-        except:
-            resp.body = 'e' # str(sys.exc_info())
 
-        else:
-            # I'll use this later
-            resp.body = str('Something  went really wrong. Please email Diag at diag@uchicago.edu; he apparently messed something up.')
-            
+        out = 't'
+        resp.body = out
+
 # falcon.API instances are callable WSGI apps
 app = falcon.API()
 
