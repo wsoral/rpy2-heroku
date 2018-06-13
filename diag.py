@@ -1,16 +1,17 @@
 import falcon
 import rpy2.robjects.packages as rpackages
-import rpy2.robjects as robj
+import rpy2.robjects as robjects
 import pandas as pd
 import sys
 
 # R vector of strings
-from rpy2.robjects.vectors import StrVector
+#from rpy2.robjects.vectors import StrVector
 
 # import R's utility package
 utils = rpackages.importr('utils')
 stats = rpackages.importr('stats')
 
+'''
 # R package names
 packnames = ('blockTools')
 
@@ -24,6 +25,7 @@ bt = rpackages.importr('blockTools')
 # dummy test data
 #d = {'col1': [1, 2], 'col2': [3, 4]}
 #df = pd.DataFrame(data=d)
+'''
 
 # Falcon follows the REST architectural style, meaning (among
 # other things) that you think in terms of resources and state
@@ -38,18 +40,8 @@ class DiagResource(object):
             #out = bt.seqblock(query = "FALSE", id_vars = "ID", id_vals = 2, exact_vars = "var1", exact_vals = "Dem", covar_vars = "var2", covar_vals = 25)
             #out = str(stats.rnorm(1))
             #test = 1/(1-1)
-            
-            out = robjects.r('''
-                    # create a function `f`
-                    f <- function(r, verbose=FALSE) {
-                        if (verbose) {
-                            cat("I am calling f().\n")
-                        }
-                        2 * pi * r
-                    }
-                    # call the function `f` with argument value 3
-                    f(3)
-                    ''')
+            out = robjects.r('pi')[0]
+
             resp.body = out
         # if it doesn't work, tell the user what's wrong
         except:
