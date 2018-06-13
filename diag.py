@@ -1,6 +1,6 @@
 import falcon
 import rpy2.robjects.packages as rpackages
-#import rpy2.robjects as robjects
+import rpy2.robjects as robjects
 import sys
 
 # import R's utility package
@@ -15,8 +15,19 @@ class DiagResource(object):
         """Handles GET requests"""
         resp.status = falcon.HTTP_200  # This is the default status
 
-        out = 't'
-        resp.body = out
+        out = robjects.r('''
+            # create a function `f`
+            f <- function(r, verbose=FALSE) {
+                if (verbose) {
+                    cat("I am calling f().\n")
+                }
+                2 * pi * r
+            }
+            # call the function `f` with argument value 3
+            f(3)
+            ''')
+            
+        resp.body = str(out)
 
 # falcon.API instances are callable WSGI apps
 app = falcon.API()
