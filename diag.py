@@ -4,9 +4,21 @@ import rpy2.robjects as robj
 import pandas as pd
 import sys
 
+# R vector of strings
+from rpy2.robjects.vectors import StrVector
+
 # import R's utility package
 utils = rpackages.importr('utils')
 stats = rpackages.importr('stats')
+
+# R package names
+packnames = ('blockTools')
+
+# Selectively install what needs to be installed.
+names_to_install = [x for packnames if not rpackages.isinstalled(x)]
+if len(names_to_install) > 0:
+    utils.install_packages(StrVector(names_to_install))
+
 bt = rpackages.importr('blockTools')
 
 # dummy test data
@@ -27,7 +39,17 @@ class DiagResource(object):
             #out = str(stats.rnorm(1))
             #test = 1/(1-1)
             
-            out = blahdeblah
+            out = robjects.r('''
+                    # create a function `f`
+                    f <- function(r, verbose=FALSE) {
+                        if (verbose) {
+                            cat("I am calling f().\n")
+                        }
+                        2 * pi * r
+                    }
+                    # call the function `f` with argument value 3
+                    f(3)
+                    ''')
             resp.body = out
         # if it doesn't work, tell the user what's wrong
         except:
