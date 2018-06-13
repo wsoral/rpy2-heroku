@@ -38,7 +38,7 @@ class DiagResource(object):
                         seqout$x[seqout$x['ID'] == 1 , "Tr"]
                        ''')
             
-        resp.body = str(out)
+        resp.body = str(out[0])
 
 # falcon.API instances are callable WSGI apps
 app = falcon.API()
