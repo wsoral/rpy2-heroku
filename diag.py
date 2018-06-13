@@ -5,7 +5,23 @@ import sys
 
 # import R's utility package
 utils = rpackages.importr('utils')
-stats = rpackages.importr('stats')
+
+# select a mirror for R packages
+utils.chooseCRANmirror(ind=1) # select the first mirror in the list
+
+# R package names
+packnames = ('ggplot2', 'blockTools')
+
+# R vector of strings
+from rpy2.robjects.vectors import StrVector
+
+# Selectively install what needs to be install.
+names_to_install = [x for packnames if not rpackages.isinstalled(x)]
+if len(names_to_install) > 0:
+    utils.install_packages(StrVector(names_to_install))
+    
+# Finally, import BlockTools
+bt = rpackages.importr('blockTools')
 
 # Falcon follows the REST architectural style, meaning (among
 # other things) that you think in terms of resources and state
@@ -16,9 +32,7 @@ class DiagResource(object):
         resp.status = falcon.HTTP_200  # This is the default status
 
         out = robjects.r('''
-            install.packages("blockTools")
-            library(blockTools)
-            seqblock
+               pi
             ''')
             
         resp.body = str(out)
