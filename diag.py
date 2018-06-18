@@ -43,7 +43,7 @@ class DiagResource(object):
         r_f = robjects.r['f']
         out = r_f(1, "Party", "Dem", "Age", 9, "sdata.RData")
         #resp.body = 'Treatment=' + str(out[0][-1])
-        resp.body = str(req.params.keys()[0])
+        resp.body = str(list(req.params.keys())[0])
 
 # falcon.API instances are callable WSGI apps
 app = falcon.API()
