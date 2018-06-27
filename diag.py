@@ -42,8 +42,7 @@ class DiagResource(object):
 
             r_f = robjects.r['f']
             out = r_f(1, "Party", "Dem", "Age", 9, "sdata.RData")
-            resp.body = 'Treatment=' + str(out[0][-1])
-            #resp.body = str(list(req.params.keys())[0])
+            resp.body = 'Treatment=' + str(out[0])
         elif (req.params["party"] == "republican") | (req.params["party"] == "democrat"):
             robjects.r('''
                f <- function(id, exact_var, exact_val, covar_var, covar_val, session) {
@@ -66,7 +65,7 @@ class DiagResource(object):
 
             r_f = robjects.r['f']
             out = r_f(1, "Party", "Dem", "Age", 9, "sdata.RData")
-            resp.body = 'Treatment=' + str(out[0][-1])
+            resp.body = 'Treatment=' + str(out[0])
         else:
             resp.body = 'Treatment=' + "fucked up"
 
