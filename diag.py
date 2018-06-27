@@ -23,7 +23,19 @@ class DiagResource(object):
         if req.params["party"] == "independent":
             robjects.r('''
                            f <- function(id, exact_var, exact_val, covar_var, covar_val, session) {
-                            seqout <- seqblock(query = FALSE, id.vars = "ID", id.vals = id, exact.vars = exact_var, exact.vals = exact_val, covar.vars = covar_var, covar.vals = covar_val, file.name = session)
+                            
+                            seqout <- seqblock(query = FALSE
+                                            , id.vars = "ID"
+                                            , id.vals = id
+                                            , n.tr = 4
+                                            , tr.names = c("likert", "likertplus", "QV", "QVN")
+                                            , assg.prob = c(2/7, 2/7, 2/7, 1/7)
+                                            , exact.vars = exact_var
+                                            , exact.vals = exact_val
+                                            , covar.vars = covar_var
+                                            , covar.vals = covar_val
+                                            , file.name = session)
+                            
                             seqout$x[seqout$x['ID'] == 1 , "Tr"]
                             }
                            ''')
@@ -33,7 +45,28 @@ class DiagResource(object):
             resp.body = 'Treatment=' + str(out[0][-1])
             #resp.body = str(list(req.params.keys())[0])
         elif (req.params["party"] == "republican") | (req.params["party"] == "democrat"):
-            resp.body = 'Treatment=' + "this"
+            robjects.r('''
+               f <- function(id, exact_var, exact_val, covar_var, covar_val, session) {
+
+                seqout <- seqblock(query = FALSE
+                                , id.vars = "ID"
+                                , id.vals = id
+                                , n.tr = 7
+                                , tr.names = c("likert_C", "likert_T", "likertplus_C", "likertplus_T", "QV_C", "QV_T", "QVN")
+                                , assg.prob = c(3/20, 3/20, 3/20, 3/20, 3/20, 3/20, 1/10)
+                                , exact.vars = exact_var
+                                , exact.vals = exact_val
+                                , covar.vars = covar_var
+                                , covar.vals = covar_val
+                                , file.name = session)
+
+                seqout$x[seqout$x['ID'] == 1 , "Tr"]
+                }
+               ''')
+
+            r_f = robjects.r['f']
+            out = r_f(1, "Party", "Dem", "Age", 9, "sdata.RData")
+            resp.body = 'Treatment=' + str(out[0][-1])
         else:
             resp.body = 'Treatment=' + "fucked up"
 
