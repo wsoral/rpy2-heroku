@@ -49,7 +49,7 @@ class DiagResource(object):
                            ''')
 
             r_f = robjects.r['f']
-            out = r_f(1, py_exact_var, py_exact_val, py_session)
+            out = r_f(1, "Party", "Dem", py_session)
             resp.body = 'Treatment=' + str(out[0])
         elif (req.params["party"] == "other"):
             robjects.r('''
@@ -70,7 +70,7 @@ class DiagResource(object):
                ''')
 
             r_f = robjects.r['f']
-            out = r_f(1, py_exact_var, py_exact_val, py_session)
+            out = r_f(1, "Party", "Dem", py_session)
             resp.body = 'Treatment=' + str(out[0])
         else:
             resp.body = 'Treatment=' + "fucked up" + req.params["party"]
