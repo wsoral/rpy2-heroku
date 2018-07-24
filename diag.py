@@ -20,7 +20,7 @@ class DiagResource(object):
         """Handles GET requests"""
         resp.status = falcon.HTTP_200  # This is the default status
         
-        if (req.params["party"] == "12"):
+        if (req.params["party"] in  ["22", "14"]):
             robjects.r('''
                            f <- function(id, exact_var, exact_val, covar_var, covar_val, session) {
                             
