@@ -21,16 +21,17 @@ class DiagResource(object):
         resp.status = falcon.HTTP_200  # This is the default status
         
         # capture each of the blocking vars
-        req.params["gender"] = cap_gender
-        req.params["education"] = cap_education
-        req.params["age"] = cap_age
-        req.params["party"] = cap_party
+        #req.params["gender"] = cap_gender
+        #req.params["education"] = cap_education
+        #req.params["age"] = cap_age
+        #req.params["party"] = cap_party
         
         #py_exact_var = ["gender", "education", "age", "party"]
         #py_exact_val = [cap_gender, cap_education, cap_age, cap_party]
-        py_session = "sdata2.RData"
+        #py_session = "sdata2.RData"
         
-        resp.body = cap_gender
+        resp.body = 'test'
+        
 # falcon.API instances are callable WSGI apps
 app = falcon.API()
 
