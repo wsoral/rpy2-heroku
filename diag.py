@@ -49,9 +49,9 @@ class DiagResource(object):
                            ''')
 
             r_f = robjects.r['f']
-            out = r_f(1, "Party", "Dem", py_session)
+            out = r_f(1, py_exact_var, py_exact_val, py_session)
             resp.body = 'Treatment=' + str(out[0])
-        elif (req.params["party"] == "other"):
+        elif (req.params["party"] in ["11", "12", "13", "15", "16",  "17", "21", "23"]):
             robjects.r('''
                f <- function(id, exact_var, exact_val, session) {
 
@@ -70,7 +70,7 @@ class DiagResource(object):
                ''')
 
             r_f = robjects.r['f']
-            out = r_f(1, "Party", "Dem", py_session)
+            out = r_f(1, py_exact_var, py_exact_val, py_session)
             resp.body = 'Treatment=' + str(out[0])
         else:
             resp.body = 'Treatment=' + "fucked up" + req.params["party"]
