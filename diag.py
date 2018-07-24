@@ -26,11 +26,11 @@ class DiagResource(object):
         req.params["age"] = cap_age
         req.params["party"] = cap_party
         
-        py_exact_var = ["gender", "education", "age", "party"]
-        py_exact_val = [cap_gender, cap_education, cap_age, cap_party]
+        #py_exact_var = ["gender", "education", "age", "party"]
+        #py_exact_val = [cap_gender, cap_education, cap_age, cap_party]
         py_session = "sdata2.RData"
         
-        resp.body = cap_gender + cap_education + cap_age + cap_party
+        resp.body = cap_gender
 # falcon.API instances are callable WSGI apps
 app = falcon.API()
 
