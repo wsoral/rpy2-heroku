@@ -21,10 +21,10 @@ class DiagResource(object):
         resp.status = falcon.HTTP_200  # This is the default status
         
         # capture each of the blocking vars
-        req.params["gender"] = cap_gender
-        #req.params["education"] = cap_education
-        #req.params["age"] = cap_age
-        #req.params["party"] = cap_party
+        cap_gender = req.params["gender"]
+        cap_education = req.params["education"]
+        cap_age = req.params["age"]
+        cap_party = req.params["party"]
         
         #py_exact_var = ["gender", "education", "age", "party"]
         #py_exact_val = [cap_gender, cap_education, cap_age, cap_party]
