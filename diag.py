@@ -30,6 +30,8 @@ class DiagResource(object):
         py_exact_val = [cap_gender, cap_education, cap_age, cap_party]
         py_session = "sdata2.RData"
         
+        '''
+        
         if (req.params["party"] in  ["22", "14"]):
             robjects.r('''
                            f <- function(id, exact_var, exact_val, session) {
@@ -74,7 +76,8 @@ class DiagResource(object):
             resp.body = 'Treatment=' + str(out[0])
         else:
             resp.body = 'Treatment=' + "fucked up" + req.params["party"]
-
+        '''
+        resp.body = cap_gender + cap_education + cap_age + cap_party
 # falcon.API instances are callable WSGI apps
 app = falcon.API()
 
