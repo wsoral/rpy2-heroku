@@ -25,10 +25,11 @@ class DiagResource(object):
         cap_education = req.params["education"]
         cap_age = req.params["age"]
         cap_party = req.params["party"]
+        cap_id = req.params["id"]
+        py_session = req.params["session"]
         
         py_exact_var = ["gender", "education", "age", "party"]
         py_exact_val = [cap_gender, cap_education, cap_age, cap_party]
-        py_session = "sdata2.RData"
         
         if (req.params["party"] in  ["22", "14"]):
             robjects.r('''
@@ -49,7 +50,7 @@ class DiagResource(object):
                            ''')
 
             r_f = robjects.r['f']
-            out = r_f(1, py_exact_var, py_exact_val, py_session)
+            out = r_f(cap_id, py_exact_var, py_exact_val, py_session)
             resp.body = 'Treatment=' + str(out[0])
         elif (req.params["party"] in ["11", "12", "13", "15", "16",  "17", "21", "23"]):
             robjects.r('''
@@ -70,7 +71,7 @@ class DiagResource(object):
                ''')
 
             r_f = robjects.r['f']
-            out = r_f(1, py_exact_var, py_exact_val, py_session)
+            out = r_f(cap_id, py_exact_var, py_exact_val, py_session)
             resp.body = 'Treatment=' + str(out[0])
         else:
             resp.body = 'Treatment=' + "fucked up" + req.params["party"]
