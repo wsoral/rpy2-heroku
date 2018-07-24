@@ -20,7 +20,7 @@ class DiagResource(object):
         """Handles GET requests"""
         resp.status = falcon.HTTP_200  # This is the default status
         
-        if req.params["party"] == "independent":
+        if str(req.params["PID_combo"]) in ["14", "22"]:
             robjects.r('''
                            f <- function(id, exact_var, exact_val, covar_var, covar_val, session) {
                             
@@ -43,7 +43,7 @@ class DiagResource(object):
             r_f = robjects.r['f']
             out = r_f(1, "Party", "Dem", "Age", 9, "sdata.RData")
             resp.body = 'Treatment=' + str(out[0])
-        elif (req.params["party"] == "republican") | (req.params["party"] == "democrat"):
+        elif (str(req.params["PID_combo"]) in ["11", "12", 13", "15", "16", "17", "21", "23"]):
             robjects.r('''
                f <- function(id, exact_var, exact_val, covar_var, covar_val, session) {
 
