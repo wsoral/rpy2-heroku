@@ -26,7 +26,7 @@ class DiagResource(object):
         cap_age = req.params["age"]
         cap_party = req.params["party"]
         cap_id = req.params["id"]
-        py_session = 'test2.RData' ##req.params["session"]
+        py_session = req.params["session"] + ".RData"
         
         py_exact_var = ["gender", "education", "age", "party"]
         py_exact_val = [cap_gender, cap_education, cap_age, cap_party]
