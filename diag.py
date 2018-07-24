@@ -38,7 +38,7 @@ class DiagResource(object):
                                             , id.vars = "ID"
                                             , id.vals = id
                                             , n.tr = 4
-                                            , tr.names = c("likert", "likertplus", "QV", "QVN")
+                                            , tr.names = c("likert_C", "likertplus_C", "QV_C", "QVN") 
                                             , assg.prob = c(2/7, 2/7, 2/7, 1/7)
                                             , exact.vars = exact_var
                                             , exact.vals = exact_val
@@ -60,7 +60,7 @@ class DiagResource(object):
                                 , id.vals = id
                                 , n.tr = 7
                                 , tr.names = c("likert_C", "likert_T", "likertplus_C", "likertplus_T", "QV_C", "QV_T", "QVN")
-                                , assg.prob = c(3/20, 3/20, 3/20, 3/20, 3/20, 3/20, 1/10)
+                                , assg.prob = c(1/5, 1/10, 1/5, 1/10, 1/5, 1/10, 1/10)
                                 , exact.vars = exact_var
                                 , exact.vals = exact_val
                                 , file.name = session)
