@@ -20,7 +20,7 @@ class DiagResource(object):
         """Handles GET requests"""
         resp.status = falcon.HTTP_200  # This is the default status
         
-        if (req.params["party"] == "independent"):
+        if (req.params["party"] == "12"):
             robjects.r('''
                            f <- function(id, exact_var, exact_val, covar_var, covar_val, session) {
                             
@@ -67,7 +67,7 @@ class DiagResource(object):
             out = r_f(1, "Party", "Dem", "Age", 9, "sdata.RData")
             resp.body = 'Treatment=' + str(out[0])
         else:
-            resp.body = 'Treatment=' + "fucked up"
+            resp.body = 'Treatment=' + "fucked up" + req.params["party"]
 
 # falcon.API instances are callable WSGI apps
 app = falcon.API()
