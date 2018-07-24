@@ -20,9 +20,19 @@ class DiagResource(object):
         """Handles GET requests"""
         resp.status = falcon.HTTP_200  # This is the default status
         
+        # capture each of the blocking vars
+        req.params["gender"] = cap_gender
+        req.params["education"] = cap_education
+        req.params["age"] = cap_age
+        req.params["party"] = cap_party
+        
+        py_exact_var = ["gender", "education", "age", "party"]
+        py_exact_val = [cap_gender, cap_education, cap_age, cap_party]
+        py_session = "sdata2.RData"
+        
         if (req.params["party"] in  ["22", "14"]):
             robjects.r('''
-                           f <- function(id, exact_var, exact_val, covar_var, covar_val, session) {
+                           f <- function(id, exact_var, exact_val, session) {
                             
                             seqout <- seqblock(query = FALSE
                                             , id.vars = "ID"
@@ -32,8 +42,6 @@ class DiagResource(object):
                                             , assg.prob = c(2/7, 2/7, 2/7, 1/7)
                                             , exact.vars = exact_var
                                             , exact.vals = exact_val
-                                            , covar.vars = covar_var
-                                            , covar.vals = covar_val
                                             , file.name = session)
                             
                             seqout$x[seqout$x['ID'] == 1 , "Tr"]
@@ -41,11 +49,11 @@ class DiagResource(object):
                            ''')
 
             r_f = robjects.r['f']
-            out = r_f(1, "Party", "Dem", "Age", 9, "sdata.RData")
+            out = r_f(1, py_exact_var, py_exact_val, py_session)
             resp.body = 'Treatment=' + str(out[0])
         elif (req.params["party"] == "other"):
             robjects.r('''
-               f <- function(id, exact_var, exact_val, covar_var, covar_val, session) {
+               f <- function(id, exact_var, exact_val, session) {
 
                 seqout <- seqblock(query = FALSE
                                 , id.vars = "ID"
@@ -55,8 +63,6 @@ class DiagResource(object):
                                 , assg.prob = c(3/20, 3/20, 3/20, 3/20, 3/20, 3/20, 1/10)
                                 , exact.vars = exact_var
                                 , exact.vals = exact_val
-                                , covar.vars = covar_var
-                                , covar.vals = covar_val
                                 , file.name = session)
 
                 seqout$x[seqout$x['ID'] == 1 , "Tr"]
@@ -64,7 +70,7 @@ class DiagResource(object):
                ''')
 
             r_f = robjects.r['f']
-            out = r_f(1, "Party", "Dem", "Age", 9, "sdata.RData")
+            out = r_f(1, py_exact_var, py_exact_val, py_session)
             resp.body = 'Treatment=' + str(out[0])
         else:
             resp.body = 'Treatment=' + "fucked up" + req.params["party"]
