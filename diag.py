@@ -45,7 +45,7 @@ class DiagResource(object):
                                             , exact.vals = exact_val
                                             , file.name = session)
                             
-                            seqout$x[seqout$x['ID'] == 1 , "Tr"]
+                            seqout$x[seqout$x['ID'] == id , "Tr"]
                             }
                            ''')
 
@@ -66,7 +66,7 @@ class DiagResource(object):
                                 , exact.vals = exact_val
                                 , file.name = session)
 
-                seqout$x[seqout$x['ID'] == 1 , "Tr"]
+                seqout$x[seqout$x['ID'] == id , "Tr"]
                 }
                ''')
 
