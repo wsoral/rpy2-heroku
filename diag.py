@@ -69,17 +69,32 @@ class DiagResource(object):
             robjects.r('''
                f <- function(id, exact_var, exact_val, session) {
 
-                seqout <- seqblock(query = FALSE
-                                , id.vars = "ID"
-                                , id.vals = id
-                                , n.tr = 7
-                                , tr.names = c("likert_C", "likert_T", "likertplus_C", "likertplus_T", "QV_C", "QV_T", "QVN")
-                                , assg.prob = c(1/5, 1/10, 1/5, 1/10, 1/5, 1/10, 1/10)
-                                , exact.vars = exact_var
-                                , exact.vals = exact_val
-                                , file.name = session)
+                # the session has not been seen before, then the corresponding file doesn't exist
+                # and this must be the first assignment
+                if(!file.exists(session)) {                            
+                    seqout <- seqblock(query = FALSE
+                                    , id.vars = "ID"
+                                    , id.vals = id
+                                    , n.tr = 7
+                                    , tr.names = c("likert_C", "likert_T", "likertplus_C", "likertplus_T", "QV_C", "QV_T", "QVN")
+                                    , assg.prob = c(1/5, 1/10, 1/5, 1/10, 1/5, 1/10, 1/10)
+                                    , exact.vars = exact_var
+                                    , exact.vals = exact_val
+                                    , file.name = session)
 
-                seqout$x[seqout$x['ID'] == id , "Tr"]
+                    seqout$x[seqout$x['ID'] == id , "Tr"]
+                }
+                else {                
+                    seqout <- seqblock(query = FALSE
+                                    , id.vars = "ID"
+                                    , object = session
+                                    , n.tr = 7
+                                    , tr.names = c("likert_C", "likert_T", "likertplus_C", "likertplus_T", "QV_C", "QV_T", "QVN")
+                                    , assg.prob = c(1/5, 1/10, 1/5, 1/10, 1/5, 1/10, 1/10)
+                                    , exact.vals = exact_val
+                                    , file.name = session)
+
+                    seqout$x[seqout$x['ID'] == id , "Tr"]                
                 }
                ''')
 
