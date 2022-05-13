@@ -1,4 +1,4 @@
-install.package("devtools")
+install.packages("devtools")
 require(devtools)
 install_local("blockTools_0.6-3.tar.gz")
 require(blockTools)
