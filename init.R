@@ -1,5 +1,4 @@
 system("R CMD INSTALL blockTools_0.6-3.tar.gz")
-
 require(blockTools)
 
 # Capture important stuff from the API
