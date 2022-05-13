@@ -1,4 +1,6 @@
-system("R CMD INSTALL blockTools_0.6-3.tar.gz")
+install.package("devtools")
+require(devtools)
+install_local("")
 require(blockTools)
 
 # Capture important stuff from the API
