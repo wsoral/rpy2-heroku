@@ -1,6 +1,6 @@
 install.package("devtools")
 require(devtools)
-install_local("")
+install_local("blockTools_0.6-3.tar.gz")
 require(blockTools)
 
 # Capture important stuff from the API
